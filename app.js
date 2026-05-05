@@ -303,12 +303,8 @@ function generarPDF() {
 // ── GUARDAR EN GOOGLE SHEETS ──────────
 async function guardarEnSheets(datos) {
   try {
-    await fetch(CFG.SHEETS_WEBHOOK, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datos),
-    });
+    const url = CFG.SHEETS_WEBHOOK + "?data=" + encodeURIComponent(JSON.stringify(datos));
+    await fetch(url, { method: "GET" });
   } catch (e) {
     console.log("Sheets webhook:", e.message);
   }
