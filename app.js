@@ -12,7 +12,7 @@ const CFG = {
   EMPRESA:  "MecaForge 3D",
   TECNICO:  "Mardik Moreno Huerta",
   CIUDAD:   "Pachacútec, Ventanilla – Lima",
-  SHEETS_WEBHOOK: "https://script.google.com/macros/s/AKfycbyJr8ZqSi7ZoiWj6SMZrKn3EWzuIUGRB_uhwW8lPPkUgUvXdZW0of9OioY8vPLnocbxvA/exec",
+  SHEETS_WEBHOOK: "https://script.google.com/macros/s/AKfycbxVVZVlwsnnJQJS6Fbn8cqLmc9J76xu3WIY0-4Dz4otKa0QKSpZ_kEONLFQVaheS8I8gA/exec",
 };
 
 // ── COSTOS DE PRODUCCIÓN (Modelo Finanzas — Dirección Económica) ──
