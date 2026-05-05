@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MECAFORGE 3D — Impresión 3D de Precisión · Pachacútec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="goTab('inicio')">
+      <span class="logo-hex">⬡</span>
+      <span class="logo-name">MECAFORGE<span class="logo-accent">3D</span></span>
+      <span class="logo-sede">Pachacútec</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a class="nav-link active" data-tab="inicio">Inicio</a></li>
+      <li><a class="nav-link" data-tab="figuras">Figuras &amp; Llaveros PLA</a></li>
+      <li><a class="nav-link" data-tab="industrial">Piezas Industriales</a></li>
+      <li><a class="nav-link" data-tab="mecat">Proyectos Mecatrónicos</a></li>
+      <li><a class="nav-link" data-tab="especiales">Pedidos Especiales</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ══════════════ INICIO ══════════════ -->
+<section id="inicio" class="tab active">
+
+  <!-- HERO con imagen de fondo -->
+  <div class="hero">
+    <div class="hero-img-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Ventanilla · Pachacútec · Lima</p>
+      <h1 class="hero-title">FABRICACIÓN<br><span class="c-or">3D DE<br>PRECISIÓN</span></h1>
+      <p class="hero-sub">Tecnología Bambu Lab P1S. Figuras personalizadas, llaveros y proyectos mecatrónicos con IoT. Calidad de ingeniería, precios accesibles para Lima.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="goTab('figuras')">Hacer un pedido</button>
+        <button class="btn-ghost" onclick="scrollId('about')">Conocer más ↓</button>
+        <a class="btn-wa-hero" href="https://wa.me/51949995401" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="printer-wrap">
+        <div class="pframe">
+          <div class="pframe-top"></div>
+          <div class="prail"></div>
+          <div class="phead" id="pHead"></div>
+          <div class="pobj" id="pObj"></div>
+          <div class="pbed"></div>
+          <div class="pframe-corner tl"></div>
+          <div class="pframe-corner tr"></div>
+          <div class="pframe-corner bl"></div>
+          <div class="pframe-corner br"></div>
+        </div>
+        <p class="plabel">Bambu Lab P1S &nbsp;·&nbsp; <span class="live-dot"></span> En operación</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><span class="snum" data-t="3">0</span><span class="slbl">Colores PLA</span></div>
+    <div class="stat-item"><span class="snum" data-t="256">0</span><span class="slbl">Temp. cama °C</span></div>
+    <div class="stat-item"><span class="snum" data-t="500">0</span><span class="slbl">mm/s velocidad</span></div>
+    <div class="stat-item"><span class="snum" data-t="100">0</span><span class="slbl">% Personalizable</span></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" class="section-wrap">
+    <div class="about-grid">
+      <div class="about-txt">
+        <p class="eyebrow">Sobre nosotros</p>
+        <h2>Ingeniería y<br>creatividad<br>impresas</h2>
+        <p>Somos <strong>MecaForge 3D</strong>, empresa de impresión 3D en Pachacútec, Lima. Operamos una <strong>Bambu Lab P1S</strong> para crear figuras y llaveros personalizados con PLA de alta calidad.</p>
+        <p>Detrás de cada pieza hay un <strong>técnico mecatrónico titulado</strong> con formación en ingeniería mecatrónica. Cada pedido es revisado y confirmado personalmente.</p>
+        <div class="tags">
+          <span class="tag">PLA Monocromático</span>
+          <span class="tag">Pintado artístico</span>
+          <span class="tag">Maker World</span>
+          <span class="tag">IoT & Robótica</span>
+          <span class="tag">Pedidos especiales</span>
+        </div>
+      </div>
+      <div class="about-specs">
+        <p class="eyebrow">Especificaciones</p>
+        <div class="speclist">
+          <div class="specrow"><span class="speck">Impresora</span><span class="specv">Bambu Lab P1S</span></div>
+          <div class="specrow"><span class="speck">Material</span><span class="specv">PLA (Blanco/Negro/Verde)</span></div>
+          <div class="specrow"><span class="speck">Acabado</span><span class="specv">Monocromático o pintado</span></div>
+          <div class="specrow"><span class="speck">Plataforma</span><span class="specv">Maker World</span></div>
+          <div class="specrow"><span class="speck">Ubicación</span><span class="specv">Pachacútec, Ventanilla</span></div>
+          <div class="specrow"><span class="speck">Adelanto</span><span class="specv">50% para iniciar</span></div>
+          <div class="specrow"><span class="speck">Técnico</span><span class="specv">Mardik Moreno Huerta</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS con imagen de fondo -->
+  <div class="services-section">
+    <div class="svc-bg" id="svcBg"></div>
+    <div class="svc-overlay"></div>
+    <div class="svc-inner">
+      <p class="eyebrow center">Servicios</p>
+      <h2 class="center">Lo que hacemos</h2>
+      <div class="svc-grid">
+        <div class="svc-card" onclick="goTab('figuras')">
+          <div class="svc-ico">◈</div>
+          <h3>Figuras &amp; Llaveros</h3>
+          <p>Elige en Maker World, ingresa los datos y obtén tu presupuesto al instante.</p>
+          <span class="svc-cta">Ver catálogo →</span>
+        </div>
+        <div class="svc-card coming" onclick="goTab('industrial')">
+          <div class="svc-soon">PRÓXIMAMENTE</div>
+          <div class="svc-ico">⬡</div>
+          <h3>Piezas Industriales</h3>
+          <p>PETG, ABS, ASA, Nylon y fibra de carbono para ingeniería y prototipado.</p>
+          <span class="svc-cta">Ver más →</span>
+        </div>
+        <div class="svc-card coming" onclick="goTab('mecat')">
+          <div class="svc-soon">PRÓXIMAMENTE</div>
+          <div class="svc-ico">⚡</div>
+          <h3>Proyectos Mecatrónicos</h3>
+          <p>Sistemas IoT, robótica y automatización. Estructura 3D + electrónica + código.</p>
+          <span class="svc-cta">Ver más →</span>
+        </div>
+        <div class="svc-card" onclick="goTab('especiales')">
+          <div class="svc-ico">✦</div>
+          <h3>Pedidos Especiales</h3>
+          <p>Figuras desde imágenes, esculturas, eventos y diseños únicos.</p>
+          <span class="svc-cta">Solicitar →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="section-wrap">
+    <p class="eyebrow center">¿Cómo funciona?</p>
+    <h2 class="center">4 pasos simples</h2>
+    <div class="proc-row">
+      <div class="proc-item"><div class="proc-n">01</div><h4>Elige tu modelo</h4><p>Navega Maker World y copia el link.</p></div>
+      <div class="proc-arr">→</div>
+      <div class="proc-item"><div class="proc-n">02</div><h4>Ingresa los datos</h4><p>Pega el link e ingresa gramos, horas y minutos.</p></div>
+      <div class="proc-arr">→</div>
+      <div class="proc-item"><div class="proc-n">03</div><h4>Recibe tu proforma</h4><p>Con número único. Descárgala en PDF.</p></div>
+      <div class="proc-arr">→</div>
+      <div class="proc-item"><div class="proc-n">04</div><h4>Pedido por WhatsApp</h4><p>Confirmamos y empezamos con 50% adelanto.</p></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-in">
+      <div class="footer-logo">⬡ MECAFORGE<span class="c-or">3D</span></div>
+      <p>Pachacútec · Ventanilla · Lima, Perú</p>
+      <p style="margin-top:4px;font-size:12px;opacity:.3">© 2025 MecaForge 3D — Todos los derechos reservados</p>
+    </div>
+  </footer>
+</section>
+
+<!-- ══════════════ FIGURAS & LLAVEROS ══════════════ -->
+<section id="figuras" class="tab">
+  <div class="page-hero">
+    <div class="ph-bg" id="phBg1"></div>
+    <div class="ph-overlay"></div>
+    <div class="ph-content">
+      <p class="eyebrow">Material: PLA · Bambu Lab P1S</p>
+      <h1>Figuras <span class="c-or">&amp; Llaveros</span></h1>
+      <p class="page-sub">Elige cualquier modelo de Maker World. Lo imprimimos con precisión para ti.</p>
+    </div>
+  </div>
+
+  <div class="flow-wrap">
+
+    <!-- PASO 1 -->
+    <div class="sblock" id="s1">
+      <div class="shdr"><div class="snum">01</div>
+        <div><h3>Elige tu modelo en Maker World</h3><p class="sdesc">La plataforma oficial de Bambu Lab con miles de modelos gratuitos.</p></div>
+      </div>
+      <div class="mwbox">
+        <div class="mwtxt">
+          <p>Visita <strong>makerworld.com</strong>, encuentra tu figura o llavero favorito.</p>
+          <ul class="mwlist">
+            <li>Busca: figura, llavero, keychain, miniatura, anime…</li>
+            <li>Filtra por material <strong>PLA</strong> para mejores resultados</li>
+            <li>Pasa el cursor sobre la figura o haz clic en la vista rápida — aparecerá una pequeña ventana con la descripción y al final las <strong>especificaciones: filamento total y tiempo total</strong></li>
+            <li>Anota esos datos y copia la URL del modelo</li>
+          </ul>
+        </div>
+        <a href="https://makerworld.com/es/3d-models" target="_blank" class="btn-primary mwbtn">Ir a Maker World ↗</a>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="sblock" id="s2">
+      <div class="shdr"><div class="snum">02</div>
+        <div><h3>Pega el link del modelo</h3><p class="sdesc">Ingresa la URL completa del modelo elegido.</p></div>
+      </div>
+      <div class="link-row">
+        <input type="url" id="makerLink" class="biginp" placeholder="https://makerworld.com/es/models/...">
+        <button class="btn-confirm" onclick="confirmarLink()">Confirmar ✓</button>
+      </div>
+      <div id="linkOk" class="link-ok" style="display:none"></div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="sblock locked" id="s3">
+      <div class="shdr"><div class="snum">03</div>
+        <div><h3>Ingresa los datos del modelo</h3><p class="sdesc">No necesitas descargar nada — los datos están visibles en Maker World al pasar el cursor.</p></div>
+      </div>
+      <div class="mwguide">
+        <div class="mwg-tip">
+          <div class="mwg-ico">💡</div>
+          <div>
+            <strong>¿Cómo ver el filamento y tiempo sin descargar?</strong>
+            <p>En Maker World, pasa el cursor sobre la imagen del modelo (o haz clic en la vista rápida). Aparecerá una pequeña ventana con la descripción. <strong>Al final de esa ventana verás las especificaciones:</strong> tiempo total de impresión y total de filamento en gramos. Anota esos dos datos y ponlos abajo.</p>
+          </div>
+        </div>
+        <div class="datainp">
+          <div class="dfield dfield-tiempo">
+            <label>⏱ Tiempo total de impresión</label>
+            <div class="tiempo-row">
+              <div class="tiempo-sub">
+                <input type="number" id="horasNum" placeholder="0" min="0" max="999" step="1" oninput="calcular()">
+                <span class="tiempo-lbl">horas</span>
+              </div>
+              <span class="tiempo-sep">:</span>
+              <div class="tiempo-sub">
+                <input type="number" id="minutosNum" placeholder="0" min="0" max="59" step="1" oninput="calcular()">
+                <span class="tiempo-lbl">minutos</span>
+              </div>
+            </div>
+            <span class="dhint">Ej: <strong>2h 30min</strong> → pon 2 en horas y 30 en minutos &nbsp;|&nbsp; Solo minutos: deja horas en 0 y pon los minutos</span>
+          </div>
+          <div class="dfield">
+            <label>⚖ Total de filamento (gramos)</label>
+            <input type="number" id="gramos" placeholder="ej: 45" min="1" max="500" oninput="calcular()">
+            <span class="dhint">Maker World muestra ej: <strong>"Filament: 45g"</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="sblock locked" id="s4">
+      <div class="shdr"><div class="snum">04</div>
+        <div><h3>Color y acabado</h3><p class="sdesc">Selecciona el color PLA disponible y el tipo de acabado.</p></div>
+      </div>
+      <div class="opts-row">
+        <div class="ogroup">
+          <p class="olbl">Color PLA</p>
+          <div class="cbtns">
+            <button class="cbtn active" data-color="Blanco" onclick="selColor(this)" style="--dot:#F0EFE8">Blanco</button>
+            <button class="cbtn" data-color="Negro" onclick="selColor(this)" style="--dot:#1A1A1A">Negro</button>
+            <button class="cbtn" data-color="Verde claro" onclick="selColor(this)" style="--dot:#7BC67E">Verde claro</button>
+          </div>
+        </div>
+        <div class="ogroup">
+          <p class="olbl">Acabado</p>
+          <div class="fbtns">
+            <button class="fbtn active" data-f="0" onclick="selFinish(this)"><span class="fic">◻</span><span>Monocromático</span><span class="fsub">Precio incluido</span></button>
+            <button class="fbtn" data-f="1" onclick="selFinish(this)"><span class="fic">◈</span><span>Pintado artístico</span><span class="fsub">Cotizar por WhatsApp</span></button>
+          </div>
+        </div>
+        <div class="ogroup">
+          <p class="olbl">Cantidad</p>
+          <div class="qtyc">
+            <button onclick="chgQty(-1)">−</button>
+            <span id="qtyShow">1</span>
+            <button onclick="chgQty(1)">+</button>
+            <input type="number" id="qtyInput" class="qty-direct" value="1" min="1" max="999" placeholder="cant." oninput="setQtyFromInput(this.value)">
+          </div>
+          <div class="qty-discount-guide">
+            <span class="qdg-row"><span class="qdg-badge">−5%</span> Media docena (6+)</span>
+            <span class="qdg-row"><span class="qdg-badge">−10%</span> Docena (12+)</span>
+            <span class="qdg-row"><span class="qdg-badge">−15%</span> 20 unidades+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 5: PRESUPUESTO -->
+    <div class="sblock locked presblock" id="s5">
+      <div class="shdr"><div class="snum">05</div>
+        <div><h3>Tu presupuesto</h3><p class="sdesc">Precio estimado con número único de proforma para seguimiento.</p></div>
+      </div>
+      <div id="budgetOut"></div>
+      <div class="pres-warn" id="presWarn" style="display:none">
+        <span class="pw-ico">⚠</span>
+        <span>Si agregas <strong>detalles adicionales</strong> en el paso 6 (cambios de tamaño, modificaciones, grabados, etc.), el precio final puede variar. Los ajustes se coordinan por WhatsApp antes de confirmar el pedido.</span>
+      </div>
+      <button class="btn-ghost pdf-btn" id="pdfBtn" onclick="generarPDF()" style="display:none">↓ Descargar proforma PDF</button>
+    </div>
+
+    <!-- PASO 6 -->
+    <div class="sblock locked" id="s6">
+      <div class="shdr"><div class="snum">06</div>
+        <div><h3>Detalles adicionales <span class="opt-tag">opcional</span></h3><p class="sdesc">¿Alguna modificación, tamaño diferente o detalle especial?</p></div>
+      </div>
+      <textarea id="detallesExtra" class="detarea" placeholder="Ej: Quiero la figura un 20% más grande, con base pintada de rojo, o el nombre 'Juan' grabado debajo..."></textarea>
+      <div class="det-tip">
+        <span>💡</span>
+        <span>Si quieres el modelo <strong>más pequeño</strong>, el precio será <strong>menor</strong>. Si lo quieres <strong>más grande</strong>, será mayor. Coordinamos el ajuste exacto por WhatsApp.</span>
+      </div>
+    </div>
+
+    <!-- PASO 7 -->
+    <div class="sblock locked" id="s7">
+      <div class="shdr"><div class="snum">07</div>
+        <div><h3>Tus datos de contacto</h3><p class="sdesc">Para personalizar el mensaje y coordinar tu pedido.</p></div>
+      </div>
+      <div class="cliForm">
+        <div class="dfield"><label>Tu nombre *</label><input type="text" id="cliName" placeholder="¿Cómo te llamamos?" oninput="valForm()"></div>
+        <div class="dfield"><label>Distrito</label><input type="text" id="cliDist" placeholder="ej: Ventanilla, Callao..."></div>
+        <div class="dfield"><label>Costo de envío (S/)</label><input type="number" id="envioVal" placeholder="0 = recojo en tienda" min="0" step="0.5" oninput="calcular()"><span class="dhint">Lima aprox. S/ 10–18. En 0 si recoges personalmente.</span></div>
+      </div>
+    </div>
+
+    <!-- WA -->
+    <div class="wablock locked" id="waZone">
+      <div class="wanote"><p>Al presionar se abrirá WhatsApp con tu pedido pre-armado incluyendo el <strong>número de proforma</strong>. El pedido se confirma con el <strong>50% de adelanto</strong> vía Yape, Plin o transferencia.</p></div>
+      <button class="wabtn" id="waBtn" onclick="enviarWA()" disabled>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar pedido por WhatsApp
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ INDUSTRIAL ══════════════ -->
+<section id="industrial" class="tab">
+  <div class="coming-page">
+    <div class="cp-bgtxt">PRONTO</div>
+    <div class="cp-content">
+      <div class="cp-badge">PRÓXIMAMENTE</div>
+      <h1>Piezas<br><span class="c-or">Industriales</span></h1>
+      <p>Cuando la línea de figuras escale, incorporaremos materiales avanzados para ingeniería y prototipado de alta resistencia.</p>
+      <div class="matgrid">
+        <div class="matcard"><span class="matn">PETG</span><span class="matd">Resistencia química</span></div>
+        <div class="matcard"><span class="matn">ABS</span><span class="matd">Resistencia al calor</span></div>
+        <div class="matcard"><span class="matn">ASA</span><span class="matd">Resistencia UV</span></div>
+        <div class="matcard dim"><span class="matn">Nylon</span><span class="matd">Alta flexibilidad</span></div>
+        <div class="matcard dim"><span class="matn">Fibra C.</span><span class="matd">Máxima rigidez</span></div>
+      </div>
+      <button class="btn-primary" style="margin-top:26px" onclick="goTab('especiales')">¿Proyecto urgente? Consulta especial →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MECATRÓNICOS ══════════════ -->
+<section id="mecat" class="tab">
+  <div class="mecat-hero">
+    <div class="mecat-img-bg" id="mecatBg"></div>
+    <div class="mecat-overlay"></div>
+    <div class="mecat-grid"></div>
+    <div class="mecat-content">
+      <div class="cp-badge">PRÓXIMAMENTE</div>
+      <p class="eyebrow" style="margin-top:14px">Mecatrónica · IoT · Robótica</p>
+      <h1>Proyectos<br><span class="c-or">Mecatrónicos</span></h1>
+      <p class="mecat-sub">Sistemas completos donde la estructura impresa 3D se fusiona con electrónica avanzada e inteligencia IoT. Proyectos propios y a medida.</p>
+    </div>
+  </div>
+
+  <div class="pillars-wrap">
+    <div class="pillar">
+      <div class="pillar-img pi1"><div class="pi-overlay"></div><div class="pi-lbl">ESTRUCTURA 3D</div></div>
+      <div class="pillar-body"><h3>Fabricación 3D</h3><p>Piezas estructurales, carcasas y ensambles con tolerancias de ingeniería. Diseño mecánico propio.</p><span class="ptag">Bambu Lab P1S</span><span class="ptag">PLA / PETG / ABS</span></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-img pi2"><div class="pi-overlay"></div><div class="pi-lbl">ELECTRÓNICA</div></div>
+      <div class="pillar-body"><h3>Integración electrónica</h3><p>Diseño y ensamble de circuitos, sensores, actuadores y sistemas de control embebido.</p><span class="ptag">Arduino / ESP32</span><span class="ptag">Sensores IoT</span></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-img pi3"><div class="pi-overlay"></div><div class="pi-lbl">PROGRAMACIÓN IoT</div></div>
+      <div class="pillar-body"><h3>Software &amp; IoT</h3><p>Programación embebida, WiFi/Bluetooth, dashboards en tiempo real y automatización inteligente.</p><span class="ptag">C++ / Python</span><span class="ptag">MQTT / HTTP</span></div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <p class="eyebrow center">Proyectos en desarrollo</p>
+    <h2 class="center">Lo que viene</h2>
+    <div class="mclist">
+      <div class="mcitem"><span class="mcn">01</span><div><strong>Brazo robótico de escritorio</strong><p>Estructura 3D + servos + control por app. Educación y prototipado.</p></div></div>
+      <div class="mcitem"><span class="mcn">02</span><div><strong>Estación meteorológica IoT</strong><p>Temperatura, humedad y presión. Dashboard en tiempo real desde el celular.</p></div></div>
+      <div class="mcitem"><span class="mcn">03</span><div><strong>Sistema de riego automático</strong><p>Sensores de humedad + bomba + ESP32. Control desde cualquier dispositivo.</p></div></div>
+      <div class="mcitem"><span class="mcn">04</span><div><strong>Mini vehículo autónomo</strong><p>Chasis impreso 3D + sensores ultrasónicos + evasión de obstáculos.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn-primary" onclick="goTab('especiales')">¿Tienes un proyecto en mente? Contáctanos →</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-in">
+      <div class="footer-logo">⬡ MECAFORGE<span class="c-or">3D</span></div>
+      <p>Pachacútec · Ventanilla · Lima, Perú</p>
+      <p style="margin-top:4px;font-size:12px;opacity:.3">© 2025 MecaForge 3D</p>
+    </div>
+  </footer>
+</section>
+
+<!-- ══════════════ ESPECIALES ══════════════ -->
+<section id="especiales" class="tab">
+  <div class="page-hero">
+    <div class="ph-bg" id="phBg2"></div>
+    <div class="ph-overlay"></div>
+    <div class="ph-content">
+      <p class="eyebrow">Fuera del catálogo estándar</p>
+      <h1>Pedidos <span class="c-or">Especiales</span></h1>
+      <p class="page-sub">Figuras desde imagen, esculturas, eventos y proyectos mecatrónicos a medida.</p>
+    </div>
+  </div>
+  <div class="esp-wrap">
+    <div class="esp-left">
+      <h3>¿Qué entra aquí?</h3>
+      <div class="etlist">
+        <div class="etitem"><span class="etico">◈</span><div><strong>Figura desde imagen o foto</strong><p>Tu personaje, mascota o diseño favorito modelado e impreso.</p></div></div>
+        <div class="etitem"><span class="etico">◈</span><div><strong>Modelos exclusivos</strong><p>Personajes de anime, videojuegos, películas poco comunes.</p></div></div>
+        <div class="etitem"><span class="etico">◈</span><div><strong>Pedidos para eventos</strong><p>Souvenirs, recuerdos de boda, cumpleaños, graduaciones.</p></div></div>
+        <div class="etitem"><span class="etico">◈</span><div><strong>Esculturas y arte 3D</strong><p>Piezas decorativas únicas, bustos, trofeos personalizados.</p></div></div>
+        <div class="etitem"><span class="etico">⚡</span><div><strong>Proyectos mecatrónicos a medida</strong><p>Consulta anticipada mientras preparamos la línea oficial.</p></div></div>
+      </div>
+    </div>
+    <div class="esp-right">
+      <h3>Cuéntanos tu proyecto</h3>
+      <p class="espsub">Te respondemos por WhatsApp con cotización personalizada.</p>
+      <div class="espform">
+        <div class="dfield"><label>Tu nombre *</label><input type="text" id="espNom" placeholder="¿Cómo te llamamos?"></div>
+        <div class="dfield"><label>Tipo de pedido</label>
+          <select id="espTipo">
+            <option>Figura desde imagen/foto</option>
+            <option>Diseño personalizado</option>
+            <option>Pedido para evento</option>
+            <option>Escultura / arte 3D</option>
+            <option>Proyecto mecatrónico</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="dfield"><label>Describe tu proyecto *</label>
+          <textarea class="detarea" id="espDesc" placeholder="Cuéntanos: qué quieres, tamaño aproximado, cantidad, fecha que necesitas..."></textarea>
+        </div>
+        <div class="dfield"><label>Distrito</label><input type="text" id="espDist" placeholder="ej: Callao, Miraflores..."></div>
+        <button class="wabtn" onclick="enviarEspecial()" style="margin-top:6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar consulta por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
